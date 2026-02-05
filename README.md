@@ -12,3 +12,20 @@
 - Match Timeline: A scrollable log recording every play, out, and milestone.
 - Responsive Design: Sporty dark-themed UI that works on both desktop and mobile.
 - Smart AI: A randomized CPU opponent that adapts to your play style.
+
+## 🎮 How to Play
+
+- The Toss: Start by calling Heads or Tails.
+- The Choice: If you win, select whether you want to bat or bowl. If the CPU wins, it will decide for you!
+- Gameplay: Click numbers 1 through 6 to play your turn.
+- While Batting: If your number matches the CPU's, you are OUT. Otherwise, your number is added to your score.
+- While Bowling: If your number matches the CPU's, you take a WICKET. Otherwise, the CPU adds its number to its score.
+- Winning: The game ends after both innings are complete (6 balls each or a wicket). The player with the highest score wins!
+
+## 🛠️ Built With
+- HTML5 - Semantic structure.
+- CSS3 - Custom properties, Flexbox/Grid, and UI transitions.
+- JavaScript (ES6) - State management and event-driven logic.
+
+## 👤 Developer
+**JAYANTH D R**
