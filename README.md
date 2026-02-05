@@ -12,6 +12,14 @@
 - Match Timeline: A scrollable log recording every play, out, and milestone.
 - Responsive Design: Sporty dark-themed UI that works on both desktop and mobile.
 - Smart AI: A randomized CPU opponent that adapts to your play style.
+---
+
+##  Screenshots
+
+### Home Screen
+![Home Screen](cricket.png)
+
+---
 
 ## 🎮 How to Play
 
