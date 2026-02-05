@@ -1,0 +1,136 @@
+:root {
+    --primary: #2ecc71;
+    --secondary: #e74c3c;
+    --dark: #121212;
+    --card: #1e1e1e;
+    --text: #ffffff;
+}
+
+body {
+    background: radial-gradient(circle, #1a472a 0%, #0a0a0a 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text);
+}
+
+.game-container {
+    background: var(--dark);
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+    text-align: center;
+}
+
+.header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 2px; }
+.header h4 { margin: 5px 0; color: #888; font-weight: 400; font-size: 0.8rem; }
+
+.badge {
+    background: var(--primary);
+    color: black;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.scoreboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.score-card {
+    background: var(--card);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.score-card .label { font-size: 0.7rem; color: #888; display: block; margin-bottom: 5px; }
+.score-card .value { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+
+#display-area {
+    margin: 20px 0;
+    min-height: 60px;
+}
+
+#target-container {
+    font-weight: bold;
+    color: #f1c40f;
+    margin-top: 5px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.btn-toss {
+    padding: 10px 20px;
+    background: var(--primary);
+    border: none;
+    border-radius: 5px;
+    color: black;
+    min-width: 100px;
+}
+
+.btn-play {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+}
+
+.btn-play:hover {
+    background: var(--primary);
+    color: black;
+    transform: scale(1.1);
+}
+
+.btn-reset {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.log-container {
+    margin-top: 20px;
+    height: 120px;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    text-align: left;
+    border: 1px solid #222;
+}
+
+.log-container h3 { margin: 0 0 10px 0; font-size: 0.9rem; color: #666; }
+.hidden { display: none; }
+.out-text { color: var(--secondary); font-weight: bold; }
+.score-text { color: var(--primary); }
