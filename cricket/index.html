@@ -4,150 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Cricket Pro</title>
-    <style>
-        :root {
-            --primary: #2ecc71;
-            --secondary: #e74c3c;
-            --dark: #121212;
-            --card: #1e1e1e;
-            --text: #ffffff;
-        }
-
-        body {
-            background: radial-gradient(circle, #1a472a 0%, #0a0a0a 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: var(--text);
-        }
-
-        .game-container {
-            background: var(--dark);
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            padding: 30px;
-            width: 400px;
-            box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
-            text-align: center;
-        }
-
-        .header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 2px; }
-
-        .badge {
-            background: var(--primary);
-            color: black;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-top: 10px;
-            display: inline-block;
-            text-transform: uppercase;
-        }
-
-        .scoreboard-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .score-card {
-            background: var(--card);
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid #333;
-        }
-
-        .score-card .label { font-size: 0.7rem; color: #888; display: block; margin-bottom: 5px; }
-        .score-card .value { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-
-        #display-area {
-            margin: 20px 0;
-            min-height: 60px;
-        }
-
-        #target-container {
-            font-weight: bold;
-            color: #f1c40f;
-            margin-top: 5px;
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        button {
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: bold;
-        }
-
-        .btn-toss {
-            padding: 10px 20px;
-            background: var(--primary);
-            border: none;
-            border-radius: 5px;
-            color: black;
-        }
-
-        .btn-play {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 1.1rem;
-        }
-
-        .btn-play:hover {
-            background: var(--primary);
-            color: black;
-            transform: scale(1.1);
-        }
-
-        .btn-reset {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            width: 100%;
-        }
-
-        .log-container {
-            margin-top: 20px;
-            height: 120px;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.5);
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            text-align: left;
-            border: 1px solid #222;
-        }
-
-        .log-container h3 { margin: 0 0 10px 0; font-size: 0.9rem; color: #666; }
-
-        .hidden { display: none; }
-        .out-text { color: var(--secondary); font-weight: bold; }
-        .score-text { color: var(--primary); }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="game-container">
     <div class="header">
-        <h1>?? NUMBER CRICKET</h1>
-        <h4>Developer: JAYANTH D R </h4>
+        <h1>🏏 NUMBER CRICKET</h1>
+        <h4>Developer: JAYANTH D R</h4>
         <div id="role-badge" class="badge">Waiting for Toss...</div>
     </div>
 
@@ -157,7 +21,7 @@
             <span id="user-score" class="value">0</span>
         </div>
         <div class="score-card">
-            <span class="label">CPU</span>
+            <span id="cpu-label" class="label">CPU</span>
             <span id="cpu-score" class="value">0</span>
         </div>
         <div class="score-card">
@@ -175,6 +39,11 @@
         <div id="toss-btns" class="btn-group">
             <button class="btn-toss" onclick="handleToss(1)">HEADS</button>
             <button class="btn-toss" onclick="handleToss(2)">TAILS</button>
+        </div>
+
+        <div id="choice-btns" class="btn-group hidden">
+            <button class="btn-toss" onclick="userChose('BATTING')">BAT FIRST</button>
+            <button class="btn-toss" onclick="userChose('BOWLING')" style="background:#3498db">BOWL FIRST</button>
         </div>
         
         <div id="play-btns" class="btn-group hidden">
@@ -195,125 +64,74 @@
     <button id="reset-btn" class="hidden btn-reset" onclick="location.reload()">NEW GAME</button>
 </div>
 
-<script>
-    let state = {
-        userScore: 0,
-        cpuScore: 0,
-        balls: 6,
-        isUserBatting: true,
-        target: -1,
-        gameOver: false
-    };
+<script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Cricket Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    function handleToss(choice) {
-        const toss = Math.floor(Math.random() * 2) + 1;
-        const won = (choice === toss);
+<div class="game-container">
+    <div class="header">
+        <h1>🏏 NUMBER CRICKET</h1>
+        <h4>Developer: JAYANTH D R</h4>
+        <div id="role-badge" class="badge">Waiting for Toss...</div>
+    </div>
+
+    <div class="scoreboard-grid">
+        <div class="score-card">
+            <span class="label">YOU</span>
+            <span id="user-score" class="value">0</span>
+        </div>
+        <div class="score-card">
+            <span id="cpu-label" class="label">CPU</span>
+            <span id="cpu-score" class="value">0</span>
+        </div>
+        <div class="score-card">
+            <span class="label">BALLS</span>
+            <span id="balls-left" class="value">6</span>
+        </div>
+    </div>
+
+    <div id="display-area">
+        <p id="message">Choose Heads or Tails to begin!</p>
+        <div id="target-container" class="hidden">Target: <span id="target-val">0</span></div>
+    </div>
+
+    <div id="controls">
+        <div id="toss-btns" class="btn-group">
+            <button class="btn-toss" onclick="handleToss(1)">HEADS</button>
+            <button class="btn-toss" onclick="handleToss(2)">TAILS</button>
+        </div>
+
+        <div id="choice-btns" class="btn-group hidden">
+            <button class="btn-toss" onclick="userChose('BATTING')">BAT FIRST</button>
+            <button class="btn-toss" onclick="userChose('BOWLING')" style="background:#3498db">BOWL FIRST</button>
+        </div>
         
-        document.getElementById('toss-btns').classList.add('hidden');
-        document.getElementById('play-btns').classList.remove('hidden');
-        
-        if (won) {
-            state.isUserBatting = true;
-            updateMessage("You won the toss! You are BATTING first.");
-            setRole("BATTING");
-        } else {
-            state.isUserBatting = false;
-            updateMessage("CPU won the toss and chose to BAT first.");
-            setRole("BOWLING");
-        }
-        addToLog("Match started after toss.");
-    }
+        <div id="play-btns" class="btn-group hidden">
+            <button class="btn-play" onclick="playTurn(1)">1</button>
+            <button class="btn-play" onclick="playTurn(2)">2</button>
+            <button class="btn-play" onclick="playTurn(3)">3</button>
+            <button class="btn-play" onclick="playTurn(4)">4</button>
+            <button class="btn-play" onclick="playTurn(5)">5</button>
+            <button class="btn-play" onclick="playTurn(6)">6</button>
+        </div>
+    </div>
 
-    function playTurn(userVal) {
-        if (state.gameOver) return;
+    <div class="log-container">
+        <h3>Match Timeline</h3>
+        <div id="match-log"></div>
+    </div>
 
-        const cpuVal = Math.floor(Math.random() * 6) + 1;
-        state.balls--;
+    <button id="reset-btn" class="hidden btn-reset" onclick="location.reload()">NEW GAME</button>
+</div>
 
-        if (state.isUserBatting) {
-            if (userVal === cpuVal) {
-                addToLog(`<span class="out-text">OUT!</span> You played ${userVal}, CPU bowled ${cpuVal}`);
-                endInnings();
-            } else {
-                state.userScore += userVal;
-                updateMessage(`You hit ${userVal}! (CPU: ${cpuVal})`);
-                addToLog(`You hit <span class="score-text">${userVal}</span>`);
-            }
-        } else {
-            if (userVal === cpuVal) {
-                addToLog(`<span class="out-text">WICKET!</span> You bowled ${userVal}, CPU played ${cpuVal}`);
-                endInnings();
-            } else {
-                state.cpuScore += cpuVal;
-                updateMessage(`CPU scores ${cpuVal}! (You: ${userVal})`);
-                addToLog(`CPU scored <span class="score-text">${cpuVal}</span>`);
-            }
-        }
-
-        // Check if second innings target is reached mid-over
-        if (state.target !== -1) {
-            if (state.isUserBatting && state.userScore > state.target) endInnings();
-            if (!state.isUserBatting && state.cpuScore > state.target) endInnings();
-        }
-
-        if (state.balls === 0 && !state.gameOver) endInnings();
-        updateUI();
-    }
-
-    function endInnings() {
-        if (state.target === -1) {
-            state.target = state.isUserBatting ? state.userScore : state.cpuScore;
-            state.isUserBatting = !state.isUserBatting;
-            state.balls = 6;
-            
-            document.getElementById('target-container').classList.remove('hidden');
-            document.getElementById('target-val').innerText = state.target + 1;
-            
-            updateMessage("Innings Over! Switching sides...");
-            setRole(state.isUserBatting ? "BATTING" : "BOWLING");
-            addToLog(`--- Innings Over. Target set: ${state.target + 1} ---`);
-        } else {
-            state.gameOver = true;
-            declareWinner();
-        }
-    }
-
-    function declareWinner() {
-        document.getElementById('play-btns').classList.add('hidden');
-        document.getElementById('reset-btn').classList.remove('hidden');
-        
-        let resultMsg = "";
-        if (state.userScore > state.cpuScore) resultMsg = "?? YOU WON THE MATCH!";
-        else if (state.cpuScore > state.userScore) resultMsg = "?? CPU WON THE MATCH!";
-        else resultMsg = "?? IT'S A DRAW!";
-        
-        updateMessage(resultMsg);
-        addToLog(`<strong>Final Result: ${resultMsg}</strong>`);
-    }
-
-    function updateUI() {
-        document.getElementById('user-score').innerText = state.userScore;
-        document.getElementById('cpu-score').innerText = state.cpuScore;
-        document.getElementById('balls-left').innerText = state.balls;
-    }
-
-    function updateMessage(msg) { document.getElementById('message').innerText = msg; }
-
-    function setRole(role) { 
-        const badge = document.getElementById('role-badge');
-        badge.innerText = role;
-        badge.style.background = (role === "BATTING") ? "#2ecc71" : "#3498db";
-    }
-
-    function addToLog(msg) {
-        const log = document.getElementById('match-log');
-        const entry = document.createElement('div');
-        entry.style.borderBottom = "1px solid #222";
-        entry.style.padding = "2px 0";
-        entry.innerHTML = `� ${msg}`;
-        log.prepend(entry);
-    }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
