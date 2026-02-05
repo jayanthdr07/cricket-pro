@@ -95,9 +95,9 @@ function declareWinner() {
     document.getElementById('reset-btn').classList.remove('hidden');
     
     let resultMsg = "";
-    if (state.userScore > state.cpuScore) resultMsg = "?? YOU WON THE MATCH!";
-    else if (state.cpuScore > state.userScore) resultMsg = "?? CPU WON THE MATCH!";
-    else resultMsg = "?? IT'S A DRAW!";
+    if (state.userScore > state.cpuScore) resultMsg = "🏆 YOU WON THE MATCH!";
+    else if (state.cpuScore > state.userScore) resultMsg = "🤖 CPU WON THE MATCH!";
+    else resultMsg = "🤝 IT'S A DRAW!";
     
     updateMessage(resultMsg);
     addToLog(`<strong>Result: ${resultMsg}</strong>`);
@@ -122,6 +122,6 @@ function addToLog(msg) {
     const entry = document.createElement('div');
     entry.style.borderBottom = "1px solid #222";
     entry.style.padding = "2px 0";
-    entry.innerHTML = `� ${msg}`;
+    entry.innerHTML = `• ${msg}`;
     log.prepend(entry);
 }
