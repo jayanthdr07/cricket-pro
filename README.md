@@ -15,7 +15,7 @@
 - Smart AI: A randomized CPU opponent that adapts to your play style.
 ---
 
-##  Screenshots
+##  Screenshots!
 
 ### Home Screen.
 ![Home Screen](cricket.png)
