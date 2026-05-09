@@ -17,7 +17,7 @@
 
 ##  Screenshots
 
-### Home Screen
+### Home Screen.
 ![Home Screen](cricket.png)
 
 ---
