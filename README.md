@@ -5,7 +5,7 @@
 ## 📝 Description.
 - Challenge the CPU in a high-speed cricket match! The game uses a number-matching logic (1–6) to determine runs and wickets. With a built-in toss system and an automated second-innings target tracker, it provides a complete cricket experience in your browser.
 
-## ✨ Features
+## ✨ Features.
 
 - Interactive Toss: Choose Heads or Tails to start the match.
 - Strategic Choice: If you win the toss, choose to Bat First or Bowl First.
